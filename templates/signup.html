@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 {{sam}}
-<input type="text" name="id">
+<form method="POST" action="">{% csrf_token %}
+<input type="text" name="username">
 <input type="password" name="password">
+<button type="submit">登録</button>
+</form>
 {% endblock content %}
