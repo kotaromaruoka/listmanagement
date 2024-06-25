@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{{sam}}
+<form method="POST" action="">{% csrf_token %}
+{% if error %}
+    {{error}}
+{% endif %}
+<input type="text" name="username">
+<input type="password" name="password">
+<button type="submit">ログイン</button>
+</form>
+{% endblock content %}
