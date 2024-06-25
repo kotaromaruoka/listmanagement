@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from .models import TaskModel
 
 
 # Create your views here.
@@ -30,3 +31,7 @@ def loginfunc(request):
         else:
             return redirect('login')
     return render(request,'login.html',{'sam':'samdata'})
+
+def listfunc(request):
+    object_list = TaskModel.objects.all()
+    return render(request,'list.html',{'object_list':object_list})
