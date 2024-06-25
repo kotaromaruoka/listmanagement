@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from .models import TaskModel
+
 
 
 # Create your views here.
@@ -27,11 +29,16 @@ def loginfunc(request):
         user = authenticate(request,username=createuser,password=password)
         if user is not None:
             login(request,user)
-            return redirect('signup')
+            return redirect('list')
         else:
             return redirect('login')
     return render(request,'login.html',{'sam':'samdata'})
 
+@login_required
 def listfunc(request):
     object_list = TaskModel.objects.all()
     return render(request,'list.html',{'object_list':object_list})
+
+def logoutfunc(request):
+    logout(request)
+    return redirect('login')
