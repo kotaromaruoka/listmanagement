@@ -1,3 +1,5 @@
+import getpass
+
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
@@ -7,7 +9,6 @@ from .models import TaskModel
 
 
 # Create your views here.
-
 def signupfunc(request):
     if request.method == 'POST':
         createuser = request.POST['username']
@@ -26,6 +27,7 @@ def loginfunc(request):
         createuser = request.POST['username']
         print(request.POST)
         password = request.POST['password']
+        print(createuser,password)
         user = authenticate(request,username=createuser,password=password)
         if user is not None:
             login(request,user)
@@ -42,3 +44,18 @@ def listfunc(request):
 def logoutfunc(request):
     logout(request)
     return redirect('login')
+
+def createfunc(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        author = request.user.username
+        object = TaskModel.objects.create(
+            title=title,
+            content=content,
+            author=author,
+        )
+        print('object: ',object)
+        object.save()
+        render(request,'create.html')
+    return render(request,'create.html')
