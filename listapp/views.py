@@ -50,10 +50,16 @@ def createfunc(request):
         title = request.POST['title']
         content = request.POST['content']
         author = request.user.username
+        starttime = request.POST['starttime']
+        endtime = request.POST['endtime']
+        nottodo = request.POST['nottodo']
         object = TaskModel.objects.create(
             title=title,
             content=content,
             author=author,
+            starttime=starttime,
+            endtime=endtime,
+            nottodo=nottodo,
         )
         print('object: ',object)
         object.save()
@@ -66,8 +72,14 @@ def updatefunc(request,pk):
     if request.method == 'POST':
         newtitle = request.POST['title']
         newcontent = request.POST['content']
+        starttime = request.POST['starttime']
+        endtime = request.POST['endtime']
+        nottodo = request.POST['nottodo']
         task.title=newtitle
         task.content=newcontent
+        task.starttime=starttime
+        task.endtime=endtime
+        task.nottodo=nottodo
         task.save()
         return redirect('list')
     return render(request,'update.html',{'task':task})

@@ -8,10 +8,22 @@
 
 {% block content %}
 {% for item in object_list %}
+{% if item.nottodo == 'on' %}
+<div style="background-color: blue;">
 <p>タイトル:{{item.title}}</p>
 <p>項目:{{item.content}}</p>
+<p>期限:{{item.starttime}} - {{item.endtime}}</p>
+<a href="/update/{{item.id}}">更新</a>
+<a href='/delete/{{item.id}}'>削除</a>
+</div>
+<hr>
+{% else %}
+<p>タイトル:{{item.title}}</p>
+<p>項目:{{item.content}}</p>
+<p>期限:{{item.starttime}} - {{item.endtime}}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
 <hr>
+{% endif %}
 {% endfor %}
 {% endblock content %}

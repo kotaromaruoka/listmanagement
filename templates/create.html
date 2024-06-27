@@ -2,8 +2,11 @@
 
 {% block content %}
 <form method="POST" action="">{% csrf_token %}
-<input type="text" name="title">
-<textarea name="content"></textarea>
+<p>タイトル:<input type="text" name="title"></p>
+<p>内容:<textarea name="content"></textarea></p>
+<p>開始:<input type="datetime-local" name="starttime"></p>
+<p>終了:<input type="datetime-local" name="endtime"></p>
+<p>やらないこと:<input type="checkbox" name="nottodo"></p>
 <button type="submit">登録</button>
 </form>
 {% endblock content %}
