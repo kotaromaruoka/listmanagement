@@ -59,3 +59,16 @@ def createfunc(request):
         object.save()
         render(request,'create.html')
     return render(request,'create.html')
+
+def updatefunc(request,pk):
+    task = TaskModel.objects.get(pk=pk)
+    print('task: ',task)
+    if request.method == 'POST':
+        newtitle = request.POST['title']
+        newcontent = request.POST['content']
+        task.title=newtitle
+        task.content=newcontent
+        task.save()
+        updatetask = TaskModel.objects.get(pk=pk)
+        render(request,'update.html',{'task':updatetask})
+    return render(request,'update.html',{'task':task})
