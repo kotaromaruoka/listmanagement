@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<a href="/list/">一覧</a>
 <form method="POST" action="">{% csrf_token %}
 <p>タイトル:<input type="text" value="{{task.title}}" name="title"></p>
 <p>内容:<textarea name="content">{{task.content}}</textarea></p>

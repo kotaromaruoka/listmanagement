@@ -69,6 +69,11 @@ def updatefunc(request,pk):
         task.title=newtitle
         task.content=newcontent
         task.save()
-        updatetask = TaskModel.objects.get(pk=pk)
-        render(request,'update.html',{'task':updatetask})
+        return redirect('list')
     return render(request,'update.html',{'task':task})
+
+def deletefunc(request,pk): 
+    task = TaskModel.objects.get(pk=pk)
+    task.delete()
+    return redirect('list')
+    
