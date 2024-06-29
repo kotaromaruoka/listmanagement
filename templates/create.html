@@ -6,7 +6,17 @@
 <p>内容:<textarea name="content"></textarea></p>
 <p>開始:<input type="datetime-local" name="starttime"></p>
 <p>終了:<input type="datetime-local" name="endtime"></p>
-<p>やらないこと:<input type="checkbox" name="nottodo"></p>
+<p>やらないこと:
+    <select value="{{task.nottodo}}" name="nottodo">
+        {% if task.nottodo == 'on' %}
+        <option>on</option>
+        <option>off</option>
+        {% else %}
+        <option>off</option>
+        <option>on</option>
+        {% endif %}
+    </select>    
+    </p>
 <button type="submit">登録</button>
 </form>
 {% endblock content %}

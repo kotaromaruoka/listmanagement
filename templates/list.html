@@ -7,23 +7,28 @@
 {% endblock header %}
 
 {% block content %}
-{% for item in object_list %}
-{% if item.nottodo == 'on' %}
+<a href="/create/">新規作成</a>
+<form method="POST" action="">{% csrf_token %}
+<p>日付指定:<input type="date" name="selectdate" id="selectdate"><button type="submit">選択</button>
+</form>
+<a href="/list/"> 日付指定なし</a>
+{% for item in nodo_list %}
 <div style="background-color: blue;">
 <p>タイトル:{{item.title}}</p>
 <p>項目:{{item.content}}</p>
-<p>期限:{{item.starttime}} - {{item.endtime}}</p>
+<p>期限:{{item.starttime|date:"Y-m-d H:i" }} - {{item.endtime|date:"Y-m-d H:i" }}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
 </div>
 <hr>
-{% else %}
+{% endfor %}
+{% for item in do_list %}
 <p>タイトル:{{item.title}}</p>
 <p>項目:{{item.content}}</p>
-<p>期限:{{item.starttime}} - {{item.endtime}}</p>
+<p>期限:{{item.starttime|date:"Y-m-d H:i"}} - {{item.endtime|date:"Y-m-d H:i"}}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
 <hr>
-{% endif %}
 {% endfor %}
 {% endblock content %}
+

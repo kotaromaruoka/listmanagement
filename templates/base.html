@@ -8,11 +8,19 @@
     {% endblock customcss %}
 </head>
 <body>
+    <a href="{% url 'logout'%}">ログアウト</a>
     {% block header %}
     {% endblock header %}
 
     {% block content %}
     {% endblock content %}
-    <a href="{% url 'logout'%}">ログアウト</a>
+    <script>
+        let ymd = new Date().toLocaleDateString('sv-SE');
+        console.log(ymd)
+        console.log(document.getElementById('selectdate').value)
+        if (document.getElementById('selectdate')!==null && document.getElementById('selectdate').value == '') {
+            document.getElementById('selectdate').value=ymd
+        }
+    </script>
 </body>
 </html>

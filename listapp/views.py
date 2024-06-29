@@ -38,8 +38,12 @@ def loginfunc(request):
 
 @login_required
 def listfunc(request):
-    object_list = TaskModel.objects.all()
-    return render(request,'list.html',{'object_list':object_list})
+    nodo_list = TaskModel.objects.filter(nottodo='on').order_by('starttime')
+    do_list = TaskModel.objects.filter(nottodo='off').order_by('starttime')
+    if request.method == 'POST':
+        selectdate=request.POST['selectdate']
+        do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=selectdate).order_by('starttime')
+    return render(request,'list.html',{'nodo_list':nodo_list,'do_list':do_list})
 
 def logoutfunc(request):
     logout(request)
@@ -63,7 +67,7 @@ def createfunc(request):
         )
         print('object: ',object)
         object.save()
-        render(request,'create.html')
+        return redirect('list')
     return render(request,'create.html')
 
 def updatefunc(request,pk):
