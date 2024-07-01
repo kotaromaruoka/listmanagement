@@ -99,11 +99,15 @@ def updatefunc(request,pk):
         starttime = request.POST['starttime']
         endtime = request.POST['endtime']
         nottodo = request.POST['nottodo']
+        progress = request.POST['progress']
+        memo = request.POST['memo']
         task.title=newtitle
         task.content=newcontent
         task.starttime=starttime
         task.endtime=endtime
         task.nottodo=nottodo
+        task.progress=progress
+        task.memo=memo
         task.save()
         return redirect('list')
     return render(request,'update.html',{'task':task})
