@@ -8,10 +8,20 @@
 
 {% block content %}
 <a href="/create/">新規作成</a>
+<br>
+<select id="periodsearch">日付指定
+    <option value="date">日付</option>
+    <option value="week">一週間</option>
+    <option value="month">月</option>
+</select>
+<button onclick="postdate()">検索</button>
 <form method="POST" action="">{% csrf_token %}
-<p>日付指定:<input type="date" name="selectdate" id="selectdate"><button type="submit">選択</button>
+<p>日付指定:<input type="date" name="selectdate" id="selectdate"></p>
+<input type="hidden" id="choiceversion" name="choiceversion">
+<button type="submit">選択</button>
 </form>
 <a href="/list/"> 日付指定なし</a>
+
 {% for item in nodo_list %}
 <div style="background-color: blue;">
 <p>タイトル:{{item.title}}</p>

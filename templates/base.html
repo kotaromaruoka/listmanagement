@@ -21,6 +21,11 @@
         if (document.getElementById('selectdate')!==null && document.getElementById('selectdate').value == '') {
             document.getElementById('selectdate').value=ymd
         }
+
+        function postdate() {
+            console.log(document.getElementById('periodsearch').value)
+            document.getElementById('choiceversion').value = document.getElementById('periodsearch').value
+        }
     </script>
 </body>
 </html>

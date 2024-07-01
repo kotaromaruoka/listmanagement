@@ -1,9 +1,12 @@
 import getpass
+from datetime import date
+from datetime import datetime
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from dateutil.relativedelta import relativedelta
 from .models import TaskModel
 
 
@@ -41,8 +44,22 @@ def listfunc(request):
     nodo_list = TaskModel.objects.filter(nottodo='on').order_by('starttime')
     do_list = TaskModel.objects.filter(nottodo='off').order_by('starttime')
     if request.method == 'POST':
-        selectdate=request.POST['selectdate']
-        do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=selectdate).order_by('starttime')
+        choice = request.POST['choiceversion']
+        if choice == 'date':
+            selectdate=request.POST['selectdate']
+            do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=selectdate).order_by('starttime')
+        elif choice == 'week':
+            print('week')
+            selectdate=request.POST['selectdate']
+            dateobj = datetime.strptime(selectdate, '%Y-%m-%d').date()
+            maxdate=dateobj + relativedelta(weeks=1)
+            do_list = TaskModel.objects.filter(nottodo='off',starttime__range=[selectdate, maxdate]).order_by('starttime')
+        elif choice == 'month':
+            print('month')
+            selectdate=request.POST['selectdate']
+            dateobj = datetime.strptime(selectdate, '%Y-%m-%d').date()
+            maxdate=dateobj + relativedelta(months=1)
+            do_list = TaskModel.objects.filter(nottodo='off',starttime__range=[selectdate, maxdate]).order_by('starttime')
     return render(request,'list.html',{'nodo_list':nodo_list,'do_list':do_list})
 
 def logoutfunc(request):
