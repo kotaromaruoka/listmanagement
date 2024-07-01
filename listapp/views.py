@@ -1,11 +1,11 @@
 import getpass
-from datetime import date
 from datetime import datetime
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from dateutil.relativedelta import relativedelta
 from .models import TaskModel
 
@@ -60,7 +60,10 @@ def listfunc(request):
             dateobj = datetime.strptime(selectdate, '%Y-%m-%d').date()
             maxdate=dateobj + relativedelta(months=1)
             do_list = TaskModel.objects.filter(nottodo='off',starttime__range=[selectdate, maxdate]).order_by('starttime')
-    return render(request,'list.html',{'nodo_list':nodo_list,'do_list':do_list})
+    page_data = Paginator(do_list, 3)
+    p = request.GET.get('p') 
+    listpage = page_data.get_page(p) 
+    return render(request,'list.html',{'nodo_list':nodo_list,'do_list':listpage})
 
 def logoutfunc(request):
     logout(request)
