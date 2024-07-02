@@ -40,21 +40,6 @@
 <hr>
 {% endfor %}
 
-<div class="pager">
-
-{% if do_list.has_previous %}
-    <a href="?p={{ do_list.previous_page_number }}">前へ</a>
-{% endif %}
-
-<span>
-    {{ do_list.number }} / {{ do_list.paginator.num_pages }}
-</span>
-
-{% if do_list.has_next %}
-<a href="?p={{ do_list.next_page_number }}">次へ</a>
-{% endif %}
-
 </div>
 
 {% endblock content %}
-

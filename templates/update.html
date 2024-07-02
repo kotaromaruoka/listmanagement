@@ -2,10 +2,16 @@
 
 {% block content %}
 <a href="/list/">一覧</a>
+{% if task.nottodo == 'off' %}
+<h3>やること更新</h3>
+{% elif task.nottodo == 'on' %}
+<h3>やらないこと更新</h3>
+{% endif %}
 <form method="POST" action="">{% csrf_token %}
 <p>タイトル:<input type="text" value="{{task.title}}" name="title"></p>
 <p>内容:<textarea name="content">{{task.content}}</textarea></p>
 <p><input type="hidden" value="{{task.author}}" name="author"></p>
+{% if task.nottodo == 'off' %}
 <p>開始:<input type="datetime-local" value="{{task.starttime|date:'Y-m-d H:i'}}" name="starttime"></p>
 <p>終了:<input type="datetime-local" value="{{task.endtime|date:'Y-m-d H:i'}}" name="endtime"></p>
 <p>やらないこと:
@@ -18,7 +24,8 @@
         <option>on</option>
         {% endif %}
     </select>    
-    </p>
+</p>
+{% endif %}
 <p>進捗:
 <select name="progress">
     {% if task.progress == 'inprocess' %}

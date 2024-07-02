@@ -47,6 +47,7 @@ def listfunc(request):
     do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=dtnow).order_by('starttime')
     if request.method == 'POST':
         choice = request.POST['choiceversion']
+        print(choice)
         if choice == 'date':
             selectdate=request.POST['selectdate']
             do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=selectdate).order_by('starttime')
@@ -62,10 +63,12 @@ def listfunc(request):
             dateobj = datetime.strptime(selectdate, '%Y-%m-%d').date()
             maxdate=dateobj + relativedelta(months=1)
             do_list = TaskModel.objects.filter(nottodo='off',starttime__range=[selectdate, maxdate]).order_by('starttime')
+    """
     page_data = Paginator(do_list, 3)
     p = request.GET.get('p') 
     listpage = page_data.get_page(p) 
-    return render(request,'list.html',{'nodo_list':nodo_list,'do_list':listpage})
+    """
+    return render(request,'list.html',{'nodo_list':nodo_list,'do_list':do_list})
 
 def logoutfunc(request):
     logout(request)
