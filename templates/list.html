@@ -25,8 +25,7 @@
 {% for item in nodo_list %}
 <div style="background-color: blue;">
 <p>タイトル:{{item.title}}</p>
-<p>項目:{{item.content}}</p>
-<p>期限:{{item.starttime|date:"Y-m-d H:i" }} - {{item.endtime|date:"Y-m-d H:i" }}</p>
+<p>内容:{{item.content}}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
 </div>
@@ -34,7 +33,7 @@
 {% endfor %}
 {% for item in do_list %}
 <p>タイトル:{{item.title}}</p>
-<p>項目:{{item.content}}</p>
+<p>内容:{{item.content}}</p>
 <p>期限:{{item.starttime|date:"Y-m-d H:i"}} - {{item.endtime|date:"Y-m-d H:i"}}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
