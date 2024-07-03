@@ -10,7 +10,7 @@
 <a href="/create/">新規作成</a>
 <br>
 <select id="periodsearch">日付指定
-    <option value="date">日付</option>
+    <option value="date" selected>日付</option>
     <option value="week">一週間</option>
     <option value="month">月</option>
 </select>
@@ -37,6 +37,8 @@
 <p>期限:{{item.starttime|date:"Y-m-d H:i"}} - {{item.endtime|date:"Y-m-d H:i"}}</p>
 <a href="/update/{{item.id}}">更新</a>
 <a href='/delete/{{item.id}}'>削除</a>
+<button onClick="push('{{item.title}}')">完了</button>
+<button onClick="push('{{item.title}}')">未完了</button>
 <hr>
 {% endfor %}
 

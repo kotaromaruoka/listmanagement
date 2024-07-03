@@ -48,7 +48,8 @@ def listfunc(request):
     if request.method == 'POST':
         choice = request.POST['choiceversion']
         print(choice)
-        if choice == 'date':
+        print(choice == '')
+        if choice == 'date' or choice == '':
             selectdate=request.POST['selectdate']
             do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=selectdate).order_by('starttime')
         elif choice == 'week':
