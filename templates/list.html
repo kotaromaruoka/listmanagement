@@ -7,40 +7,115 @@
 {% endblock header %}
 
 {% block content %}
-<a href="/create/">新規作成</a>
-<br>
-<select id="periodsearch">日付指定
-    <option value="date" selected>日付</option>
-    <option value="week">一週間</option>
-    <option value="month">月</option>
-</select>
-<button onclick="postdate()">検索</button>
-<form method="POST" action="">{% csrf_token %}
-<p>日付指定:<input type="date" name="selectdate" id="selectdate"></p>
-<input type="hidden" id="choiceversion" name="choiceversion">
-<button type="submit">選択</button>
-</form>
-<a href="/list/"> 日付指定なし</a>
 
+<div class="mt-7 mx-auto flex justify-center items-center gap-4">
+        <!-- Form -->
+        <form method="POST" action="">{% csrf_token %}
+          <div class="w-full flex justify-center items-center gap-2">
+            <!-- Form Group -->
+            <div class="lg:w-auto">
+              <label for="periodsearch" class="block text-sm mb-2">serch</label>
+              <div class="relative w-auto">
+                <select id="periodsearch" class="bg-gray-50 py-1 px-2 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                <option value="date" selected>day</option>
+                <option value="week">week</option>
+                <option value="month" >month</option>
+                </select>
+              </div>
+            </div>
+            <!-- End Form Group -->
+  
+            <!-- Form Group -->
+            <div class="lg:w-auto">
+              <label for="selectdate" class="block text-sm mb-2">SerchDate</label>
+              <div class="relative">
+                <input type="date" name="selectdate" id="selectdate" class="bg-gray-50" onclick="postdate()" class=" py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
+              </div>
+            </div>
+            <!-- End Form Group -->
+
+            <div class="flex justify-center items-center gap-2">
+            <button type="submit" class="bg-blue-50 font-bold w-full py-3 px-2 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-500 hover:bg-blue-100 disabled:opacity-50 disabled:pointer-events-none">Serch</button>
+            <a href="/list/" class="bg-blue-50 w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-500 hover:bg-blue-100 disabled:opacity-50 disabled:pointer-events-none">TodayList</a>
+            </div>
+          </div>
+          <input type="hidden" id="choiceversion" name="choiceversion">
+        </form>
+        <!-- End Form -->
+      </div>
+    </div>
+  </div>
+
+<div id="nottodovalue">
 {% for item in nodo_list %}
-<div style="background-color: blue;">
-<p>タイトル:{{item.title}}</p>
-<p>内容:{{item.content}}</p>
-<a href="/update/{{item.id}}">更新</a>
-<a href='/delete/{{item.id}}'>削除</a>
+<hr>
+<section class="text-gray-600 body-font overflow-hidden">
+    <div class="container px-5 py-10 mx-auto">
+      <div class="-my-8 divide-y-2 divide-gray-100">
+        <div class="py-3 flex flex-wrap md:flex-nowrap">
+          <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col pr-8">
+            <span class="font-semibold title-font text-gray-700">Not Do Task</span>
+          </div>
+          <div class="md:flex-grow">
+            <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{item.title}}</h2>
+            <p class="leading-relaxed">
+            {{item.content}}
+            </p>
+            <a class="text-yellow-500 inline-flex items-center mt-4" href="/update/{{item.id}}">update
+            </a>
+            <a class="text-yellow-500 inline-flex items-center mt-4" href="/delete/{{item.id}}">delete
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endfor %}
+</div>
+<div class="flex items-center justify-center">
+<p class="m-0">Not Do Task</p>
+<input type="submit" value="▲" id="hide" class="mx-auto" onClick="hidenottodo()">
 </div>
 <hr>
-{% endfor %}
+
+<div class="overflow-x-auto">
+<div class="h-96">
 {% for item in do_list %}
-<p>タイトル:{{item.title}}</p>
-<p>内容:{{item.content}}</p>
-<p>期限:{{item.starttime|date:"Y-m-d H:i"}} - {{item.endtime|date:"Y-m-d H:i"}}</p>
-<a href="/update/{{item.id}}">更新</a>
-<a href='/delete/{{item.id}}'>削除</a>
-<button onClick="push('{{item.title}}')">完了</button>
-<button onClick="push('{{item.title}}')">未完了</button>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-10 mx-auto">
+          <div class="-my-8 divide-y-2 divide-gray-100">
+            <div class="py-3 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col pr-8">
+                <span class="font-semibold title-font text-gray-700">Task</span>
+                <span class="text-sm text-gray-500">start {{item.starttime}}</span>
+                <span class="text-sm text-gray-500">end {{item.endtime}}</span>
+              </div>
+              <div class="md:flex-grow">
+                {% if item.progress != 'complete' %}
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{item.title}}</h2>
+                <p class="leading-relaxed">
+                {{item.content}}
+                </p>
+                {% else %}
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2"><s>{{item.title}}</s></h2>
+                <p class="leading-relaxed">
+                <s>{{item.content}}</s>
+                </p>
+                {% endif %}
+                <a class="text-yellow-500 inline-flex items-center mt-4" href="/update/{{item.id}}">update
+                </a>
+                <a class="text-yellow-500 inline-flex items-center mt-4" href="/delete/{{item.id}}">delete
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 <hr>
 {% endfor %}
+</div>
+</div>
 
 </div>
 
