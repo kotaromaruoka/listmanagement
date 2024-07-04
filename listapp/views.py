@@ -41,10 +41,12 @@ def loginfunc(request):
 
 @login_required
 def listfunc(request):
+    print(request.user)
+    print(request.user.username)
     now = datetime.now()
     dtnow = now.strftime('%Y-%m-%d')
-    nodo_list = TaskModel.objects.filter(nottodo='on').order_by('starttime')
-    do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=dtnow).order_by('starttime')
+    nodo_list = TaskModel.objects.filter(nottodo='on',author=request.user.username).order_by('starttime')
+    do_list = TaskModel.objects.filter(nottodo='off',starttime__startswith=dtnow,author=request.user.username).order_by('starttime')
     if request.method == 'POST':
         choice = request.POST['choiceversion']
         print(choice)

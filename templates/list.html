@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div class="mt-7 mx-auto flex justify-center items-center gap-4">
+<div class="mt-4 mx-auto flex justify-center items-center gap-4">
         <!-- Form -->
         <form method="POST" action="">{% csrf_token %}
           <div class="w-full flex justify-center items-center gap-2">
@@ -16,7 +16,7 @@
             <div class="lg:w-auto">
               <label for="periodsearch" class="block text-sm mb-2">serch</label>
               <div class="relative w-auto">
-                <select id="periodsearch" class="bg-gray-50 py-1 px-2 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                <select id="periodsearch" class="mb-2 bg-gray-50 py-1 px-2 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
                 <option value="date" selected>day</option>
                 <option value="week">week</option>
                 <option value="month" >month</option>
@@ -29,7 +29,7 @@
             <div class="lg:w-auto">
               <label for="selectdate" class="block text-sm mb-2">SerchDate</label>
               <div class="relative">
-                <input type="date" name="selectdate" id="selectdate" class="bg-gray-50" onclick="postdate()" class=" py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                <input type="date" name="selectdate" id="selectdate" class="mb-2 bg-gray-50 py-1 px-2 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"" onclick="postdate()" class=" py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
               </div>
             </div>
             <!-- End Form Group -->
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-<div id="nottodovalue">
+<div id="nottodovalue" class="bg-gray-100">
 {% for item in nodo_list %}
 <hr>
 <section class="text-gray-600 body-font overflow-hidden">
@@ -74,7 +74,7 @@
 {% endfor %}
 </div>
 <div class="flex items-center justify-center">
-<p class="m-0">Not Do Task</p>
+<p class="m-0">　Not Do Task</p>
 <input type="submit" value="▲" id="hide" class="mx-auto" onClick="hidenottodo()">
 </div>
 <hr>

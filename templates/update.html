@@ -61,17 +61,13 @@
                 <label for="progress" class="block text-sm mb-2">Progress</label>
                 <div class="relative">
                   <select name="progress" class="bg-gray-50 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>
-                    {% if task.progress == 'inprocess' %}
-                    <option value="inprocess">inprocess</option>
-                    <option value="incomplete">incomplete</option>
-                    <option value="complete">complete</option>
-                    {% elif task.progress == 'complete'  %}
+                    {% if task.progress == 'complete'  %}
                     <option value="complete">complete</option>
                     <option value="incomplete">incomplete</option>
-                    <option value="inprocess">inprocess</option>
+
                     {% else %}
                     <option value="incomplete">incomplete</option>
-                    <option value="inprocess">inprocess</option>
+
                     <option value="complete">complete</option>
                     {% endif %}
                   </select>
@@ -83,7 +79,7 @@
             <div>
                 <label for="memo" class="block text-sm mb-2">Memo</label>
                 <div class="relative">
-                  <textarea name="memo" class="bg-gray-50 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" required>{{task.memo}}</textarea>
+                  <textarea name="memo" class="bg-gray-50 py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500">{{task.memo}}</textarea>
                 </div>
               </div>
               <!-- End Form Group -->

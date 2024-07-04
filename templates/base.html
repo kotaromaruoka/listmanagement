@@ -12,20 +12,20 @@
 <body>
 <div id="hidenav">
     <nav class="bg-gray-50 dark:bg-gray-700">
-        <div class="max-w-screen-xl px-4 py-3 mx-auto">
-            <div class="flex items-center">
-                <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-
-                        <a href="{% url 'list' %}" class="text-gray-900 dark:text-white hover:underline">list</a>
+        <div class="max-w-screen-xl px-4 py-3">
+                <ul class="flex justify-between">
+                    <div class="flex gap-3">
+                    <li class="font-bold">
+                    <a href="{% url 'list' %}" class="text-gray-900 dark:text-white hover:underline">list</a>
                     </li>
-                    <li>
+                    <li class="font-bold">
                         <a href="{% url 'create' %}" class="text-gray-900 dark:text-white hover:underline">create</a>
                     </li>
-                    <div class="flex items-center space-x-6 rtl:space-x-reverse">
-                        <a href="{% url 'logout'%}" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline" aria-current="page">logout</a>
+                </div>
+                    <div class="space-x-10 rtl:space-x-reverse">
+                        <a href="{% url 'logout'%}" class="ml-auto font-bold text-blue-600 dark:text-blue-500 hover:underline" aria-current="page">logout</a>
                     </div>
                 </ul>
-            </div>
         </div>
     </nav>
 </div>
