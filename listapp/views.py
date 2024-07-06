@@ -100,7 +100,8 @@ def createfunc(request):
 
 def updatefunc(request,pk):
     task = TaskModel.objects.get(pk=pk)
-    print('task: ',task)
+    if task.author != request.user.username:
+        return redirect('list')
     if request.method == 'POST':
         newtitle = request.POST['title']
         newcontent = request.POST['content']
@@ -120,8 +121,10 @@ def updatefunc(request,pk):
         return redirect('list')
     return render(request,'update.html',{'task':task})
 
-def deletefunc(request,pk): 
+def deletefunc(request,pk):
     task = TaskModel.objects.get(pk=pk)
+    if task.author != request.user.username:
+        return redirect('list')
     task.delete()
     return redirect('list')
     
