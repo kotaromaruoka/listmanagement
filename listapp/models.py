@@ -9,5 +9,5 @@ class TaskModel(models.Model):
     nottodo = models.CharField(max_length=100)
     starttime = models.CharField(max_length=100)
     endtime = models.CharField(max_length=100)
-    progress = models.CharField(max_length=100)
+    progress = models.CharField(max_length=100,default='incomplete')
     memo = models.TextField(null=True, blank=True,default='')

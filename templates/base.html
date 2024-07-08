@@ -89,14 +89,22 @@
         console.log('hello')
         console.log(item)
     }
-    function taskclick(itemid,title,content,start,end,progress,memo,autor) {
-    console.log(itemid)
-    let postprogress = ''
+
+    function progressdata(progress) {
+        let postprogress = ''
     if(progress == 'complete') {
         postprogress = 'incomplete'
     } else if(progress == 'incomplete') {
         postprogress = 'complete'
     }
+    return postprogress 
+    }
+
+    function taskclick(itemid,title,content,start,end,progress,memo,autor) {
+    console.log(itemid)
+    const postprogress = progressdata(progress)
+    console.log(progress)
+    console.log(postprogress)
     const csrftoken = document.querySelector('[name=csrf-token]').content;
     const data = {
         title: title,
@@ -118,13 +126,13 @@
     }).then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            // window.location.reload();
         })
         .catch((error) => {
             console.log('error')
             console.error('Error:', error);
-            // window.location.reload();
         });
+        window.location.reload();
+
     }
     
     </script>

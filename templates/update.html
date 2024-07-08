@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{{task.starttime}}
 
 <div class="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm">
     <div class="p-4 sm:p-7">
@@ -44,7 +44,7 @@
             <div>
                 <label for="starttime" class="block text-sm mb-2">StartTime</label>
                 <div class="relative">
-                    <input type="datetime-local" name="starttime" value="{{task.starttime|date:'Y-m-d H:i'}}" class="bg-gray-50">
+                    <input type="datetime-local" name="starttime" value="{{task.starttime}}" class="bg-gray-50">
                 </div>
             </div>
             <!-- End Form Group -->
@@ -52,7 +52,7 @@
               <div>
                 <label for="endtime" class="block text-sm mb-2">EndTime</label>
                 <div class="relative">
-                    <input type="datetime-local" name="endtime" value="{{task.endtime|date:'Y-m-d H:i'}}" class="bg-gray-50">
+                    <input type="datetime-local" name="endtime" value="{{task.endtime}}" class="bg-gray-50">
                 </div>
               </div>
             <!-- End Form Group -->

@@ -76,7 +76,6 @@ def listfunc(request):
     p = request.GET.get('p') 
     listpage = page_data.get_page(p) 
     """
-    print('dolist',do_list)
     return render(request,'list.html',{'nodo_list':nodo_list,'do_list':do_list})
 
 def logoutfunc(request):
@@ -106,6 +105,7 @@ def createfunc(request):
 
 def updatefunc(request,pk):
     task = TaskModel.objects.get(pk=pk)
+    print('task')
     if task.author != request.user.username:
         return redirect('list')
     if request.method == 'POST':
@@ -120,7 +120,11 @@ def updatefunc(request,pk):
             task.progress=data.get('progress')
             task.memo=data.get('memo')
             task.nottodo='off'
+            print('post update')
+            print(data.get('starttime'))
             task.save()
+            print(task.progress)
+            print(data.get('progress'))
         else:
             newtitle = request.POST['title']
             newcontent = request.POST['content']
