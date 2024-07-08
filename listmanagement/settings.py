@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-i0u(!8i!ypm==lyn&+y(px$un9sme8*b)k0h0tkrocgv3h4imu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.example.com']
+ALLOWED_HOSTS = ['www.example.com','localhost']
 
 
 # Application definition
@@ -112,7 +112,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# ここには静的ファイルを追加するディレクトリのリスト
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# ここには collectstatic コマンドで集められる静的ファイルを保存するディレクトリ
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
