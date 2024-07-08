@@ -55,16 +55,18 @@
         <div class="py-3 flex flex-wrap md:flex-nowrap">
           <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col pr-8">
             <span class="font-semibold title-font text-gray-700">Not Do Task</span>
+            <span>
+              <a class="text-yellow-500 inline-flex items-center mt-4" href="/update/{{item.id}}">update
+              </a>
+              <a class="text-yellow-500 inline-flex items-center mt-4" href="/delete/{{item.id}}">delete
+              </a>
+            </span>
           </div>
           <div class="md:flex-grow">
             <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{item.title}}</h2>
-            <p class="leading-relaxed">
+            <p class="leading-relaxed" style="white-space: pre-line;">
             {{item.content}}
             </p>
-            <a class="text-yellow-500 inline-flex items-center mt-4" href="/update/{{item.id}}">update
-            </a>
-            <a class="text-yellow-500 inline-flex items-center mt-4" href="/delete/{{item.id}}">delete
-              </a>
           </div>
         </div>
       </div>
@@ -86,27 +88,44 @@
         <div class="container px-5 py-10 mx-auto">
           <div class="-my-8 divide-y-2 divide-gray-100">
             <div class="py-3 flex flex-wrap md:flex-nowrap">
+              <input type="hidden" id="taskcheck" value="check">
+              <div class="mx-3 text-center">
+              {% if item.progress == 'incomplete' %}
+              <button class="my-auto bg-transparent font-semibold px-1 border border-blue-500 hover:border-transparent rounded" onClick="taskclick('{{item.id}}','{{item.title}}','{{item.content|escapejs}}','{{item.starttime}}','{{item.endtime}}','{{item.progress}}','{{item.memo}}','{{item.author}}')">
+              ✔️
+              </button>
+              {% else %}
+              <button class="my-auto bg-blue-100 bg-transparent font-semibold px-1 border border-blue-500 hover:border-transparent rounded" onClick="taskclick('{{item.id}}','{{item.title}}','{{item.content|escapejs}}','{{item.starttime}}','{{item.endtime}}','{{item.progress}}','{{item.memo}}','{{item.author}}')">
+                ✔️
+              </button>
+                {% endif %}
+              </div>
+
               <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col pr-8">
                 <span class="font-semibold title-font text-gray-700">Task</span>
                 <span class="text-sm text-gray-500">start {{item.starttime}}</span>
                 <span class="text-sm text-gray-500">end {{item.endtime}}</span>
-              </div>
-              <div class="md:flex-grow">
-                {% if item.progress != 'complete' %}
-                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{item.title}}</h2>
-                <p class="leading-relaxed">
-                {{item.content}}
-                </p>
-                {% else %}
-                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2"><s>{{item.title}}</s></h2>
-                <p class="leading-relaxed">
-                <s>{{item.content}}</s>
-                </p>
-                {% endif %}
+                <span>
                 <a class="text-yellow-500 inline-flex items-center mt-4" href="/update/{{item.id}}">update
                 </a>
                 <a class="text-yellow-500 inline-flex items-center mt-4" href="/delete/{{item.id}}">delete
                   </a>
+                </span>
+              </div>
+              
+
+              <div class="md:flex-grow">
+                {% if item.progress != 'complete' %}
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{item.title}}</h2>
+                <p class="leading-relaxed" style=" white-space: pre-line;">
+                {{item.content}}
+                </p>
+                {% else %}
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2" style=" text-decoration: line-through; ">{{item.title}}</h2>
+                <p class="leading-relaxed" style=" white-space: pre-line; text-decoration: line-through; ">
+                {{item.content}}
+                </p>
+                {% endif %}
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Document</title>
     {% block customcss %}
     {% endblock customcss %}
@@ -88,6 +89,42 @@
         console.log('hello')
         console.log(item)
     }
+    function taskclick(itemid,title,content,start,end,progress,memo,autor) {
+    console.log(itemid)
+    let postprogress = ''
+    if(progress == 'complete') {
+        postprogress = 'incomplete'
+    } else if(progress == 'incomplete') {
+        postprogress = 'complete'
+    }
+    const csrftoken = document.querySelector('[name=csrf-token]').content;
+    const data = {
+        title: title,
+        content: content,
+        starttime: start,
+        endtime: end,
+        progress: postprogress,
+        memo: memo,
+        autor: autor
+    }
+    console.log(data)
+    fetch("/update/" + itemid, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken
+      },
+      body: JSON.stringify(data),
+    }).then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+        window.location.reload();
+    }
+    
     </script>
 </body>
 </html>
