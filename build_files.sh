@@ -16,9 +16,6 @@ python3.9 -m pip install -r requirements.txt
 chmod 664 /tmp/db.sqlite3
 chown www-data:www-data /tmp/db.sqlite3
 
-# Apply migrations
-python3.9 manage.py migrate
-
 python3.9 manage.py makemigrations
 
 python3.9 manage.py migrate  
