@@ -16,6 +16,7 @@ python3.9 manage.py makemigrations
 
 python3.9 manage.py migrate  
 
+
 # Set correct permissions for the SQLite database
 chmod 664 /db.sqlite3
 chown www-data:www-data /db.sqlite3
