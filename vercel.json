@@ -5,7 +5,7 @@
     ],
     "builds": [
         {
-            "src": "config/wsgi.py",
+            "src": "listmanagement/wsgi.py",
             "use": "@vercel/python",
             "config": {
                 "maxLambdaSize": "15mb",
@@ -27,7 +27,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/config/wsgi.py"
+            "dest": "/listmanagement/wsgi.py"
         }
     ]
 }
