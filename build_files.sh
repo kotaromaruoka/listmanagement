@@ -19,5 +19,7 @@ python3.9 manage.py migrate
 chmod 664 /tmp/db.sqlite3
 chown www-data:www-data /tmp/db.sqlite3
 
+python3.9 manage.py migrate
+
 # Collect static files
 python3.9 manage.py collectstatic --noinput
