@@ -84,12 +84,20 @@ DATABASES = {
         # # "NAME": BASE_DIR / "db.sqlite3",
         # 'NAME': '/tmp/db.sqlite3',
 
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'listdb',
-        'USER': 'root',
-        'PASSWORD': 'mm315913',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'listdb',
+        # 'USER': 'root',
+        # 'PASSWORD': 'mm315913',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
+
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': '5432',  # デフォルトのポート番号
+        
     }
 }
 
