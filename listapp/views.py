@@ -27,7 +27,7 @@ def signupfunc(request):
         # except:
         #     user = User.objects.create_user(createuser,'',password)
         #     return render(request,'signup.html')
-    return render(request,'signup.html'{'sam':test})
+    return render(request,'signup.html',{'sam':test})
 
 def loginfunc(request):
     if request.user.username != '':
