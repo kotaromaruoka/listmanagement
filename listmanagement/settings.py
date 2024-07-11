@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,7 +80,10 @@ WSGI_APPLICATION = "listmanagement.wsgi.application"
 
 DATABASES = {
     
-    "default": {
+    "default": dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    ),
+    # {
         # "ENGINE": "django.db.backends.sqlite3",
         # # "NAME": BASE_DIR / "db.sqlite3",
         # 'NAME': '/tmp/db.sqlite3',
@@ -91,13 +95,14 @@ DATABASES = {
         # 'HOST': 'localhost',
         # 'PORT': '3306',
      
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE','verceldb'),
-        'USER': os.environ.get('MYSQL_USER','default'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD','DN28dZRXbvHM'),
-        'HOST': os.environ.get('MYSQL_HOST','ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech'),
-        'PORT': os.environ.get('MYSQL_PORT','3306'),
-    },
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.environ.get('MYSQL_DATABASE','verceldb'),
+        # 'USER': os.environ.get('MYSQL_USER','default'),
+        # 'PASSWORD': os.environ.get('MYSQL_PASSWORD','DN28dZRXbvHM'),
+        # 'HOST': os.environ.get('MYSQL_HOST','ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech'),
+        # 'PORT': os.environ.get('MYSQL_PORT','3306'),
+        
+    # },
     'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
