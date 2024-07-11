@@ -44,7 +44,7 @@ def loginfunc(request):
             return redirect('login')
     return render(request,'login.html',{'sam':'samdata'})
 
-@login_required
+#@login_required
 def listfunc(request):
     print(request.user)
     print(request.user.username)
