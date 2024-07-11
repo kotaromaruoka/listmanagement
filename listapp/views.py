@@ -20,14 +20,13 @@ def signupfunc(request):
         createuser = request.POST['username']
         print(request.POST)
         password = request.POST['password']
-        test=User.objects
-        # try:
-        #     User.objects.get(username=createuser)
-        #     return render(request,'signup.html',{'error':'すでに登録されているユーザー名です'})
-        # except:
-        #     user = User.objects.create_user(createuser,'',password)
-        #     return render(request,'signup.html')
-    return render(request,'signup.html',{'sam':test})
+        try:
+            User.objects.get(username=createuser)
+            return render(request,'signup.html',{'error':'すでに登録されているユーザー名です'})
+        except:
+            user = User.objects.create_user(createuser,'',password)
+            return render(request,'signup.html')
+    return render(request,'signup.html')
 
 def loginfunc(request):
     if request.user.username != '':
