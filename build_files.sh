@@ -9,11 +9,14 @@ then
     rm get-pip.py
 fi
 
+apt-get update && apt-get install -y \
+    python3-dev \
+    default-libmysqlclient-dev \
+    build-essential
+
 # Install dependencies
 python3.9 -m pip install -r requirements.txt
 python3.9 -m pip install django==4.2.13
-python3.9 -m pip install build-essential default-libmysqlclient-dev
-python3.9 -m pip install mysqlclient
 
 
 python3.9 manage.py makemigrations
