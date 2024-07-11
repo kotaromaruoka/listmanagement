@@ -91,13 +91,12 @@ DATABASES = {
         # 'PASSWORD': 'mm315913',
         # 'HOST': 'localhost',
         # 'PORT': '3306',
-     
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'verceldb',
-        'USER': 'default',
-        'PASSWORD':'DN28dZRXbvHM',
-        'HOST': "ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech",
-        'PORT': '80',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': '5432',  # PostgreSQLのデフォルトポート
     },
     'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
