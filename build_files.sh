@@ -17,7 +17,7 @@ python3 -m pip install mysqlclient
 python3 -m pip install pymysql
 
 # python3.9 manage.py makemigrations
-# python3.9 manage.py migrate  
+python3 manage.py migrate  
 
 # Collect static files
 python3 manage.py collectstatic --noinput

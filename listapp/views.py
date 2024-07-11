@@ -25,8 +25,8 @@ def signupfunc(request):
             return render(request,'signup.html',{'error':'すでに登録されているユーザー名です'})
         except:
             user = User.objects.create_user(createuser,'',password)
-            return render(request,'signup.html',{'sam':'samdata'})
-    return render(request,'signup.html',{'sam':'samdata'})
+            return render(request,'signup.html')
+    return render(request,'signup.html')
 
 def loginfunc(request):
     if request.user.username != '':
