@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'verceldb',
         'USER': 'default',
         'PASSWORD':'DN28dZRXbvHM',
-        'HOST': 'ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech',
+        'HOST': "ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech",
         'PORT': '80',
     },
     'OPTIONS': {
