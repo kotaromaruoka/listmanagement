@@ -1,5 +1,9 @@
 #!/bin/bash
 
+apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    build-essential
+
 # Ensure pip is installed
 if ! command -v pip &> /dev/null
 then
@@ -14,7 +18,7 @@ python3.9 -m pip install -r requirements.txt
 
 python3.9 manage.py makemigrations
 
-python3.9 manage.py migrate  
+python3.9 manage.py migrate
 
 
 # Collect static files
