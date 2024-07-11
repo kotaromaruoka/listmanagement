@@ -97,7 +97,7 @@ DATABASES = {
         'USER': os.environ.get('MYSQL_USER','default'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD','DN28dZRXbvHM'),
         'HOST': os.environ.get('MYSQL_HOST','ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech'),
-        'PORT': os.environ.get('MYSQL_PORT','3306'),
+        'PORT': os.environ.get('MYSQL_PORT','80'),
     },
     'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
