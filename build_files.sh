@@ -14,6 +14,7 @@ python3 -m pip install -r requirements.txt
 python3 -m pip install django==4.2.13
 # python3.9 -m pip install build-essentialdefault-libmysqlclient-dev
 python3 -m pip install mysqlclient
+python3 -m pip install pymysql
 
 # python3.9 manage.py makemigrations
 # python3.9 manage.py migrate  
