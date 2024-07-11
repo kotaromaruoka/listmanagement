@@ -18,7 +18,8 @@
             "config": {
               "distDir": "static"
             }
-        }
+        },
+        { "src": "manage.py", "use": "@vercel/python" }
     ],
     "routes": [
         {
@@ -28,6 +29,7 @@
         {
             "src": "/(.*)",
             "dest": "/listmanagement/wsgi.py"
-        }
+        },
+        { "src": "/(.*)", "dest": "manage.py" }
     ]
 }
