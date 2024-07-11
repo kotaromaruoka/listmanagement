@@ -84,15 +84,13 @@ DATABASES = {
         # # "NAME": BASE_DIR / "db.sqlite3",
         # 'NAME': '/tmp/db.sqlite3',
 
-        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'listdb',
         # 'USER': 'root',
         # 'PASSWORD': 'mm315913',
         # 'HOST': 'localhost',
         # 'PORT': '3306',
 
-        # 'ENGINE': 'django.db.backends.postgresql',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('POSTGRES_DATABASE'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
