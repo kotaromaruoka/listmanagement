@@ -98,10 +98,10 @@ DATABASES = {
         'HOST': os.environ.get('MYSQL_HOST','ep-odd-haze-a1h991tt-pooler.ap-southeast-1.aws.neon.tech'),
         'PORT': os.environ.get('MYSQL_PORT','3306'),
     },
-    # 'OPTIONS': {
-    #         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-    #         'charset': 'utf8mb4',
-    # },
+    'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+    },
 }
 
 import pymysql
