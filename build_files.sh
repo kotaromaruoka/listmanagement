@@ -15,6 +15,7 @@ python3.9 -m pip install django==4.2.13
 python3.9 -m pip install build-essential default-libmysqlclient-dev
 python3.9 -m pip install mysqlclient
 
+
 python3.9 manage.py makemigrations
 python3.9 manage.py migrate  
 
