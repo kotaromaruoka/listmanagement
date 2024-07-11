@@ -18,14 +18,14 @@ from dateutil import parser
 def signupfunc(request):
     if request.method == 'POST':
         createuser = request.POST['username']
-        print(request.POST)
-        password = request.POST['password']
-        try:
-            User.objects.get(username=createuser)
-            return render(request,'signup.html',{'error':'すでに登録されているユーザー名です'})
-        except:
-            user = User.objects.create_user(createuser,'',password)
-            return render(request,'signup.html')
+        # print(request.POST)
+        # password = request.POST['password']
+        # try:
+        #     User.objects.get(username=createuser)
+        #     return render(request,'signup.html',{'error':'すでに登録されているユーザー名です'})
+        # except:
+        #     user = User.objects.create_user(createuser,'',password)
+        return render(request,'signup.html',{'sam':request.POST['username']})
     return render(request,'signup.html')
 
 def loginfunc(request):
