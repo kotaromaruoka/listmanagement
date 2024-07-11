@@ -80,18 +80,11 @@ WSGI_APPLICATION = "listmanagement.wsgi.application"
 
 DATABASES = {
     
-    # "default": {
-    #     "ENGINE": "django.db.backends.sqlite3",
-    #     # "NAME": BASE_DIR / "db.sqlite3",
-    #     'NAME': '/tmp/db.sqlite3',
-
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'listdb',
-        # 'USER': 'root',
-        # 'PASSWORD': 'mm315913',
-        # 'HOST': 'localhost',
-        # 'PORT': '3306',
-    # }
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": BASE_DIR / "db.sqlite3",
+        'NAME': '/tmp/db.sqlite3',
+    }
 }
 
 
@@ -130,8 +123,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # ここには collectstatic コマンドで集められる静的ファイルを保存するディレクトリ
-# STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
