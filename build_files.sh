@@ -1,4 +1,7 @@
 #!/bin/bash
+python3.9 -m venv venv
+
+source venv/bin/activate
 
 # Ensure pip is installed
 if ! command -v pip &> /dev/null
