@@ -24,12 +24,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-i0u(!8i!ypm==lyn&+y(px$un9sme8*b)k0h0tkrocgv3h4imu"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = [
-    '*',
-    '.vercel.app',
-    ]
+if os.getenv('GAE_APPLICATION', None):
+   # 本番環境
+   DEBUG = False
+   ALLOWED_HOSTS = ['listmanagement.an.r.appspot.com']
+else:
+   # 開発環境
+   DEBUG = True
+   ALLOWED_HOSTS = ['*']
+
+# DEBUG = True
+
+# ALLOWED_HOSTS = [
+#     '*',
+#     '.vercel.app',
+#     ]
 
 # Application definition
 
